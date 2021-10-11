@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>--- SWTKal Client Settings ---</comment>
+<entry key="MtPaneYears">-1 .. +5</entry>
+<entry key="BrowserPath"></entry>
+<entry key="RMIServerPort">2005</entry>
+<entry key="RMIServerName">localhost</entry>
+</properties>
