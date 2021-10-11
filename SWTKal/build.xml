@@ -87,6 +87,7 @@
     			<fileset dir="${deploy.base}" />
     			<pathelement location="${run.dir}"/>
     		</classpath>
+			<jvmarg value="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5900"/>
     	</java>
     </target>
 
@@ -102,6 +103,7 @@
     			<fileset dir="${deploy.base}" />
     			<pathelement location="${run.dir}"/>
     		</classpath>
+			<jvmarg value="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5900"/>
     	</java>
     </target>
 	

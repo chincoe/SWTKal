@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="start.swing.client" type="AntRunConfiguration">
+    <antsettings antfile="file://$PROJECT_DIR$/SWTKal/build.xml" target="start.swing.client" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+      <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/SWTKal/build.xml" target="collect.jars" />
+    </method>
+  </configuration>
+</component>
