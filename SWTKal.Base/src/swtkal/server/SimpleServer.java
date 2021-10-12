@@ -261,7 +261,25 @@ public class SimpleServer extends Server
 
 	public Termin getTermin(int terminId) throws TerminException
 	{
-		throw new TerminException("Not yet implemented!");
+		var termine = new HashMap<String, Termin>();
+		teilnehmerTermine.values().forEach(tt -> {
+			tt.values().forEach(ts -> {
+				ts.forEach(t -> {
+					var id = Integer.toString(t.getId());
+					if (!termine.containsKey(id)) {
+						termine.put(id, t);
+					}
+				});
+			});
+		});
+
+		var stringId = Integer.toString(terminId);
+
+		if (!termine.containsKey(stringId)){
+			throw new TerminException("Termin does not exist");
+		}
+
+		return termine.get(stringId);
 		// TODO Auto-generated method stub
 	}
 	
