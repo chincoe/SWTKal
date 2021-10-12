@@ -285,7 +285,17 @@ public class SimpleServer extends Server
 	
 	public void delete(int terminID) throws TerminException
 	{
-		throw new TerminException("Not yet implemented!");
+		teilnehmerTermine.forEach((key, map) -> {
+			var newMap = new HashMap<String, Vector<Termin>>();
+			map.forEach((dateKey, terminVector) -> {
+				terminVector.removeIf(termin -> termin.getId() == terminID);
+
+				if (!terminVector.isEmpty()) {
+					newMap.put(dateKey, terminVector);
+				}
+			});
+			teilnehmerTermine.put(key, newMap);
+		});
 		// TODO Auto-generated method stub
 	}
 
