@@ -40,11 +40,13 @@ public class SimpleServer extends Server
 	protected Map<String, String> passwoerter;
 	protected Map<String, Map<String, Vector<Termin>>> teilnehmerTermine;
 		// verwaltet die Teilnehmer-Termin-Assoziationen
-		// speichert zu jedem Personenkürzel-String eine Map
+		// speichert zu jedem Personenkï¿½rzel-String eine Map
 		// diese Map liefert zu jedem Datums-String einen Vector
 		// dieser Vector enthaelt alle Termine zur Teilnehmerperson am konkreten Datum
 //  TODO analoge Datenstruktur und Interface-Methoden fuer Besitzer-Assoziation einfuegen?	
 //	protected Map<String, Map<String, Vector<Termin>>> besitzerTermine;
+
+	private int lastTerminId = 0;
 
 	/** This constructor creates an initial default user and two appointments
 	 */
@@ -176,6 +178,10 @@ public class SimpleServer extends Server
 	public void insert(Termin termin) throws TerminException
 	{
 		logger.fine("Insertion of date " + termin);
+		if (termin.getId() == 0) {
+			termin.setId(++lastTerminId);
+		}
+		System.out.println("TerminId: " + termin.getId());
 		
 		// insert into teilnehmerTermine
 		Collection<Person> teilnehmer = termin.getTeilnehmer();
