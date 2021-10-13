@@ -274,17 +274,19 @@ public class SimpleServer extends Server
 	
 	public void delete(int terminID) throws TerminException
 	{
-		teilnehmerTermine.forEach((key, map) -> {
-			var newMap = new HashMap<String, Vector<Termin>>();
-			map.forEach((dateKey, terminVector) -> {
+		try {
+			var existingTermin = getTermin(terminID);
+			for (var tagesTermine : teilnehmerTermine.values()) {
+				var dateKey = existingTermin.getBeginn().getDateStr();
+				var terminVector = tagesTermine.get(dateKey);
 				terminVector.removeIf(termin -> termin.getId() == terminID);
-
 				if (!terminVector.isEmpty()) {
-					newMap.put(dateKey, terminVector);
+					tagesTermine.remove(dateKey);
 				}
-			});
-			teilnehmerTermine.put(key, newMap);
-		});
+			}
+		} catch(TerminException tex) {
+			// ignored
+		}
 	}
 
 	public Vector<Termin> getTermineVom(Datum dat, Person tn)
