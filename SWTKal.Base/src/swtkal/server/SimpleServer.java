@@ -168,7 +168,7 @@ public class SimpleServer extends Server {
 
         // add termin to respective date
         var dateTermin = dateTermine.get(termin.getBeginn().getDateStr());
-        if (!dateTermin.contains(termin.getId())) {
+        if (dateTermin != null && !dateTermin.contains(termin.getId())) {
             dateTermin.add(termin.getId());
         }
 
@@ -177,7 +177,7 @@ public class SimpleServer extends Server {
             if (!isPersonKnown(p.getKuerzel()))
                 throw new TerminException("Userid unknown!");
             var tnTermin = tnTermine.get(p.getKuerzel());
-            if (!tnTermin.contains(termin.getId())) {
+            if (tnTermin != null && !tnTermin.contains(termin.getId())) {
                 tnTermin.add(termin.getId());
             }
         }
@@ -261,7 +261,7 @@ public class SimpleServer extends Server {
 
         // get all termine that are specific to the user and the date
         var tnTerminIds = tnTermine.get(kuerzel);
-        var dateTerminIds = dateTermine.get(dat.getDateStr());
+        var dateTerminIds = dateTermine.getOrDefault(dat.getDateStr(), new Vector<>());
         return dateTerminIds
                 .stream()
                 .filter(dtId -> !tnTerminIds.contains(dtId))
