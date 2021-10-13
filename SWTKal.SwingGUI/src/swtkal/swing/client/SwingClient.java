@@ -51,8 +51,7 @@ public class SwingClient extends Client implements ActionListener
 		try
 		{
 			frame = new JFrame();
-			LoginDialog connect = new LoginDialog(frame, server);
-			user = connect.getUser();
+			user = server.authenticatePerson("ADM", "admin");
 		}
 		catch (PersonException e)
 		{
