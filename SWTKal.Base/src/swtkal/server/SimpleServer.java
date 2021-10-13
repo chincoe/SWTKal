@@ -276,11 +276,13 @@ public class SimpleServer extends Server
 	{
 		try {
 			var existingTermin = getTermin(terminID);
-			for (var tagesTermine : teilnehmerTermine.values()) {
-				var dateKey = existingTermin.getBeginn().getDateStr();
+			var dateKey = existingTermin.getBeginn().getDateStr();
+			var teilnehmerCollection = existingTermin.getTeilnehmer();
+			for (var teilnehmer : teilnehmerCollection) {
+				var tagesTermine = teilnehmerTermine.get(teilnehmer.getKuerzel());
 				var terminVector = tagesTermine.get(dateKey);
 				terminVector.removeIf(termin -> termin.getId() == terminID);
-				if (!terminVector.isEmpty()) {
+				if (terminVector.isEmpty()) {
 					tagesTermine.remove(dateKey);
 				}
 			}
