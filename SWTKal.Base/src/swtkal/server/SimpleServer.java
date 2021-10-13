@@ -64,8 +64,6 @@ public class SimpleServer extends Server
 					new Datum(new Date()), new Datum(new Date()).addDauer(1)));
 			insert(new Termin(p, "2. Testtermin", "Dies ist der Langtext zum 2. Testtermin",
 						new Datum(new Date()).addDauer(1.5), new Datum(new Date()).addDauer(2.5)));
-			var termin = getTermin(2);
-			System.out.println(termin.getKurzText());
 		}
 		catch (Exception e)
 		{
@@ -182,8 +180,7 @@ public class SimpleServer extends Server
 		if (termin.getId() == 0) {
 			termin.setId(++lastTerminId);
 		}
-		System.out.println("TerminId: " + termin.getId());
-		
+
 		// insert into teilnehmerTermine
 		Collection<Person> teilnehmer = termin.getTeilnehmer();
 		for (Person p : teilnehmer)
@@ -273,7 +270,6 @@ public class SimpleServer extends Server
 		}
 
 		throw new TerminException("Termin does not exist");
-		// TODO Auto-generated method stub
 	}
 	
 	public void delete(int terminID) throws TerminException
@@ -289,7 +285,6 @@ public class SimpleServer extends Server
 			});
 			teilnehmerTermine.put(key, newMap);
 		});
-		// TODO Auto-generated method stub
 	}
 
 	public Vector<Termin> getTermineVom(Datum dat, Person tn)
