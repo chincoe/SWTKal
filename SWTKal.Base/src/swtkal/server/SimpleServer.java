@@ -259,11 +259,11 @@ public class SimpleServer extends Server
 
 	public Termin getTermin(int terminId) throws TerminException
 	{
-		for (var tt : teilnehmerTermine.values()) {
-			for (var ts : tt.values()) {
-				for (var t : ts) {
-					if (t.getId() == terminId) {
-						return t;
+		for (var tagesTermine : teilnehmerTermine.values()) {
+			for (var termine : tagesTermine.values()) {
+				for (var termin : termine) {
+					if (termin.getId() == terminId) {
+						return termin;
 					}
 				}
 			}
