@@ -19,7 +19,6 @@ import swtkal.domain.Person;
 import swtkal.domain.Termin;
 import swtkal.exceptions.PersonException;
 import swtkal.exceptions.TerminException;
-import swtkal.server.Server;
 
 /*****************************************************************************************************
  * Class SimpleServer is a single-user, memory-based server that can be
@@ -65,6 +64,8 @@ public class SimpleServer extends Server
 					new Datum(new Date()), new Datum(new Date()).addDauer(1)));
 			insert(new Termin(p, "2. Testtermin", "Dies ist der Langtext zum 2. Testtermin",
 						new Datum(new Date()).addDauer(1.5), new Datum(new Date()).addDauer(2.5)));
+			var termin = getTermin(2);
+			System.out.println(termin.getKurzText());
 		}
 		catch (Exception e)
 		{
@@ -261,25 +262,17 @@ public class SimpleServer extends Server
 
 	public Termin getTermin(int terminId) throws TerminException
 	{
-		var termine = new HashMap<String, Termin>();
-		teilnehmerTermine.values().forEach(tt -> {
-			tt.values().forEach(ts -> {
-				ts.forEach(t -> {
-					var id = Integer.toString(t.getId());
-					if (!termine.containsKey(id)) {
-						termine.put(id, t);
+		for (var tt : teilnehmerTermine.values()) {
+			for (var ts : tt.values()) {
+				for (var t : ts) {
+					if (t.getId() == terminId) {
+						return t;
 					}
-				});
-			});
-		});
-
-		var stringId = Integer.toString(terminId);
-
-		if (!termine.containsKey(stringId)){
-			throw new TerminException("Termin does not exist");
+				}
+			}
 		}
 
-		return termine.get(stringId);
+		throw new TerminException("Termin does not exist");
 		// TODO Auto-generated method stub
 	}
 	
