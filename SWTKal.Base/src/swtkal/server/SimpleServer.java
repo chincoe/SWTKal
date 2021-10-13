@@ -258,14 +258,39 @@ public class SimpleServer extends Server
 
 	public Termin getTermin(int terminId) throws TerminException
 	{
-		throw new TerminException("Not yet implemented!");
-		// TODO Auto-generated method stub
+		logger.fine("Method getTermin called for " + terminId);
+		
+		for	(Map.Entry<String, Map<String, Vector<Termin>>> user: teilnehmerTermine.entrySet() ) {
+			for (Map.Entry<String, Vector<Termin>> datum: user.getValue().entrySet()) {
+				for (Termin termin: datum.getValue()) {
+					if (terminId != termin.getId()) {
+						continue;
+					}
+					return termin;
+				}
+			}
+		}
+		
+		throw new TerminException("Termin id is unknown!");
 	}
 	
 	public void delete(int terminID) throws TerminException
 	{
-		throw new TerminException("Not yet implemented!");
-		// TODO Auto-generated method stub
+		logger.fine("Method delete called for " + terminID);
+		
+		for	(Map.Entry<String, Map<String, Vector<Termin>>> user: teilnehmerTermine.entrySet() ) {
+			for (Map.Entry<String, Vector<Termin>> datum: user.getValue().entrySet()) {
+				for (Termin termin: datum.getValue()) {
+					if (terminID != termin.getId()) {
+						continue;
+					}
+					datum.getValue().remove(termin);
+					return;
+				}
+			}
+		}
+		
+		throw new TerminException("Termin id is unknown!");
 	}
 
 	public Vector<Termin> getTermineVom(Datum dat, Person tn)
