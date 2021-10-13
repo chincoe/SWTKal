@@ -36,6 +36,7 @@ import swtkal.server.Server;
  */
 public class SimpleServer extends Server
 {
+	protected int terminId = 0;
 	protected Map<String, Person> personen;
 	protected Map<String, String> passwoerter;
 	protected Map<String, Map<String, Vector<Termin>>> teilnehmerTermine;
@@ -60,7 +61,7 @@ public class SimpleServer extends Server
 			insert(p, "admin");
 			//	two simple test dates for today
 			insert(new Termin(p, "1. Testtermin", "Dies ist der Langtext zum 1. Testtermin",
-					new Datum(new Date()), new Datum(new Date()).addDauer(1)));
+					new Datum(new Date()), new Datum(new Date()).addDauer(1)));			
 			insert(new Termin(p, "2. Testtermin", "Dies ist der Langtext zum 2. Testtermin",
 						new Datum(new Date()).addDauer(1.5), new Datum(new Date()).addDauer(2.5)));
 		}
@@ -195,6 +196,8 @@ public class SimpleServer extends Server
 
 	private void insert(Termin termin, Person p, Map<String, Map<String, Vector<Termin>>> map)
 	{
+		terminId++;
+		termin.setId(terminId);
 		if (!map.containsKey(p.getKuerzel()))
 		{	// first appointment for this person
 			Vector<Termin> vector = new Vector<Termin>();

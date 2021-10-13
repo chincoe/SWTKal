@@ -10,7 +10,6 @@ import java.util.*;
 
 import swtkal.client.Client;
 import swtkal.exceptions.PersonException;
-import swtkal.swing.elements.person.LoginDialog;
 
 public class SwingClient extends Client implements ActionListener
 {
