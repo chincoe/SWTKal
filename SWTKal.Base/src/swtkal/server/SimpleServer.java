@@ -35,6 +35,8 @@ import swtkal.exceptions.TerminException;
  */
 public class SimpleServer extends Server
 {
+	private int lastTerminId = 0;
+
 	protected Map<String, Person> personen;
 	protected Map<String, String> passwoerter;
 	protected Map<String, Map<String, Vector<Termin>>> teilnehmerTermine;
@@ -45,7 +47,6 @@ public class SimpleServer extends Server
 //  TODO analoge Datenstruktur und Interface-Methoden fuer Besitzer-Assoziation einfuegen?	
 //	protected Map<String, Map<String, Vector<Termin>>> besitzerTermine;
 
-	private int lastTerminId = 0;
 
 	/** This constructor creates an initial default user and two appointments
 	 */
@@ -177,9 +178,7 @@ public class SimpleServer extends Server
 	public void insert(Termin termin) throws TerminException
 	{
 		logger.fine("Insertion of date " + termin);
-		if (termin.getId() == 0) {
-			termin.setId(++lastTerminId);
-		}
+		termin.setId(++lastTerminId);
 
 		// insert into teilnehmerTermine
 		Collection<Person> teilnehmer = termin.getTeilnehmer();
