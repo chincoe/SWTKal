@@ -50,7 +50,7 @@ class DatePanel implements ActionListener
 		dateField.setPreferredSize(new Dimension(90, 23));
 		dateField.setMaximumSize(new Dimension(500, 23));
 
-		ImageIcon calGif = new ImageIcon("images/calendar.gif");
+		ImageIcon calGif = new ImageIcon("SWTKal.SwingGUI/src/images/calendar.gif");
 		calendar = new JButton(calGif);
 		calendar.setPreferredSize(new Dimension(20, 20));
 		calendar.setMargin(new Insets(0, 0, 0, 0));
