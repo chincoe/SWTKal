@@ -111,7 +111,7 @@ public class EditOneUser extends ListenerForActions
 		li.add(zeile3);
 		li.add(Box.createVerticalStrut(5));
 
-		JLabel re = new JLabel(new ImageIcon("images/secure1.gif"));
+		JLabel re = new JLabel(new ImageIcon("SWTKal.SwingGUI/src/images/secure1.gif"));
 		re.setPreferredSize(new Dimension(80, 45));
 		re.setHorizontalAlignment(JLabel.CENTER);
 		re.setVerticalAlignment(JLabel.CENTER);
