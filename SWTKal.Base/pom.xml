@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>swtkal</groupId>
-    <artifactId>SWTKal</artifactId>
-    <version>1.0</version>
+    <artifactId>SWTKal.Base</artifactId>
+    <version>1.0.0</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -21,7 +21,7 @@
     </dependencies>
 
     <build>
-        <testSourceDirectory>SWTKal.Base/src/junit/swtkal</testSourceDirectory>
-        <sourceDirectory>SWTKal.Base/src/swtkal</sourceDirectory>
+        <testSourceDirectory>src/junit/swtkal</testSourceDirectory>
+        <sourceDirectory>src/swtkal</sourceDirectory>
     </build>
 </project>
