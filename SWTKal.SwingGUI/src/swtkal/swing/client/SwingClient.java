@@ -10,7 +10,6 @@ import java.util.*;
 
 import swtkal.client.Client;
 import swtkal.exceptions.PersonException;
-import swtkal.swing.elements.person.LoginDialog;
 
 public class SwingClient extends Client implements ActionListener
 {
@@ -51,8 +50,7 @@ public class SwingClient extends Client implements ActionListener
 		try
 		{
 			frame = new JFrame();
-			LoginDialog connect = new LoginDialog(frame, server);
-			user = connect.getUser();
+			user = server.authenticatePerson("ADM", "admin");
 		}
 		catch (PersonException e)
 		{

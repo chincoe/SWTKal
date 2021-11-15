@@ -19,7 +19,6 @@ import swtkal.domain.Person;
 import swtkal.domain.Termin;
 import swtkal.exceptions.PersonException;
 import swtkal.exceptions.TerminException;
-import swtkal.server.Server;
 
 /*****************************************************************************************************
  * Class SimpleServer is a single-user, memory-based server that can be
@@ -36,15 +35,18 @@ import swtkal.server.Server;
  */
 public class SimpleServer extends Server
 {
+	private int lastTerminId = 0;
+
 	protected Map<String, Person> personen;
 	protected Map<String, String> passwoerter;
 	protected Map<String, Map<String, Vector<Termin>>> teilnehmerTermine;
 		// verwaltet die Teilnehmer-Termin-Assoziationen
-		// speichert zu jedem Personenkürzel-String eine Map
+		// speichert zu jedem Personenkï¿½rzel-String eine Map
 		// diese Map liefert zu jedem Datums-String einen Vector
 		// dieser Vector enthaelt alle Termine zur Teilnehmerperson am konkreten Datum
 //  TODO analoge Datenstruktur und Interface-Methoden fuer Besitzer-Assoziation einfuegen?	
 //	protected Map<String, Map<String, Vector<Termin>>> besitzerTermine;
+
 
 	/** This constructor creates an initial default user and two appointments
 	 */
@@ -176,7 +178,8 @@ public class SimpleServer extends Server
 	public void insert(Termin termin) throws TerminException
 	{
 		logger.fine("Insertion of date " + termin);
-		
+		termin.setId(++lastTerminId);
+
 		// insert into teilnehmerTermine
 		Collection<Person> teilnehmer = termin.getTeilnehmer();
 		for (Person p : teilnehmer)
@@ -255,14 +258,36 @@ public class SimpleServer extends Server
 
 	public Termin getTermin(int terminId) throws TerminException
 	{
-		throw new TerminException("Not yet implemented!");
-		// TODO Auto-generated method stub
+		for (var tagesTermine : teilnehmerTermine.values()) {
+			for (var termine : tagesTermine.values()) {
+				for (var termin : termine) {
+					if (termin.getId() == terminId) {
+						return termin;
+					}
+				}
+			}
+		}
+
+		throw new TerminException("Termin does not exist");
 	}
 	
 	public void delete(int terminID) throws TerminException
 	{
-		throw new TerminException("Not yet implemented!");
-		// TODO Auto-generated method stub
+		try {
+			var existingTermin = getTermin(terminID);
+			var dateKey = existingTermin.getBeginn().getDateStr();
+			var teilnehmerCollection = existingTermin.getTeilnehmer();
+			for (var teilnehmer : teilnehmerCollection) {
+				var tagesTermine = teilnehmerTermine.get(teilnehmer.getKuerzel());
+				var terminVector = tagesTermine.get(dateKey);
+				terminVector.removeIf(termin -> termin.getId() == terminID);
+				if (terminVector.isEmpty()) {
+					tagesTermine.remove(dateKey);
+				}
+			}
+		} catch(TerminException tex) {
+			// ignored
+		}
 	}
 
 	public Vector<Termin> getTermineVom(Datum dat, Person tn)

@@ -120,19 +120,19 @@ public class MonatsObjekt extends JPanel implements ActionListener, ItemListener
 		JPanel selectMonth = new JPanel();
 		selectMonth.setLayout(new BoxLayout(selectMonth, BoxLayout.X_AXIS));
 
-		JButton b1 = new JButton(new ImageIcon("images/left.gif"));
+		JButton b1 = new JButton(new ImageIcon("SWTKal.SwingGUI/src/images/left.gif"));
 		b1.setMargin(new Insets(0, 0, 0, 0));
 		b1.setAlignmentY((float) 0.5);
 		b1.setRolloverEnabled(true);
-		b1.setRolloverIcon(new ImageIcon("images/leftRollover.gif"));
+		b1.setRolloverIcon(new ImageIcon("SWTKal.SwingGUI/src/images/leftRollover.gif"));
 		b1.setActionCommand("previousMonth");
 		b1.addActionListener(this);
 
-		JButton b2 = new JButton(new ImageIcon("images/right.gif"));
+		JButton b2 = new JButton(new ImageIcon("SWTKal.SwingGUI/src/images/right.gif"));
 		b2.setMargin(new Insets(0, 0, 0, 0));
 		b2.setAlignmentY((float) 0.5);
 		b2.setRolloverEnabled(true);
-		b2.setRolloverIcon(new ImageIcon("images/rightRollover.gif"));
+		b2.setRolloverIcon(new ImageIcon("SWTKal.SwingGUI/src/images/rightRollover.gif"));
 		b2.setActionCommand("nextMonth");
 		b2.addActionListener(this);
 
