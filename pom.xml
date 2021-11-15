@@ -23,10 +23,5 @@
     <build>
         <testSourceDirectory>SWTKal.Base/src/junit/swtkal</testSourceDirectory>
         <sourceDirectory>SWTKal.Base/src/swtkal</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>SWTKal.Base/resources</directory>
-            </resource>
-        </resources>
     </build>
 </project>

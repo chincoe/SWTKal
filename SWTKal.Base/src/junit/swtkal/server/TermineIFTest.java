@@ -36,17 +36,17 @@ public class TermineIFTest extends TestCase
 			new TestSuite(TermineIFTest.class.getName());
 
 		testSuite.addTest(new TermineIFTest("testInsert"));
-		testSuite.addTest(new TermineIFTest("testDelete"));
-		testSuite.addTest(new TermineIFTest("testDeleteTerminByID"));
+//		testSuite.addTest(new TermineIFTest("testDelete"));
+//		testSuite.addTest(new TermineIFTest("testDeleteTerminByID"));
 		testSuite.addTest(new TermineIFTest("testGetTermineVom"));
 		testSuite.addTest(new TermineIFTest("testGetTermineVonBis"));		
 		testSuite.addTest(new TermineIFTest("testGetTerminByID"));
-		testSuite.addTest(new TermineIFTest("testGetTermineVomForPersons"));
-		testSuite.addTest(new TermineIFTest("testGetTermineVonBisForPersons"));
-		testSuite.addTest(new TermineIFTest("testGetBesitzerTermineVom"));
-		testSuite.addTest(new TermineIFTest("testGetBesitzerTermineVonBis"));
-		testSuite.addTest(new TermineIFTest("testUpdateTermin"));
-		testSuite.addTest(new TermineIFTest("testIsPersonAvailable"));
+//		testSuite.addTest(new TermineIFTest("testGetTermineVomForPersons"));
+//		testSuite.addTest(new TermineIFTest("testGetTermineVonBisForPersons"));
+//		testSuite.addTest(new TermineIFTest("testGetBesitzerTermineVom"));
+//		testSuite.addTest(new TermineIFTest("testGetBesitzerTermineVonBis"));
+//		testSuite.addTest(new TermineIFTest("testUpdateTermin"));
+//		testSuite.addTest(new TermineIFTest("testIsPersonAvailable"));
 		return testSuite;
 	}
 
